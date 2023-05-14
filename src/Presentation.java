@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * @version 1.6 2014/05/16 Sylvia Stuurman
  */
 
-public class Presentation {
+public class Presentation implements Accessable {
     private String showTitle; //The title of the presentation
     private ArrayList<Slide> showList = null; //An ArrayList with slides
     private int currentSlideNumber = 0; //The number of the current slide
@@ -83,7 +83,7 @@ public class Presentation {
         return getSlide(currentSlideNumber);
     }
 
-    public String GetXmlForPresentation(){
+    public String GetXml(){
         String xml = "<?xml version=\"1.0\"?>\n" 
         + "<!DOCTYPE presentation SYSTEM \"jabberpoint.dtd\">\n" 
         + "<presentation>\n"
@@ -92,7 +92,7 @@ public class Presentation {
         + "</showtitle>\n";
         for (int slideNumber = 0; slideNumber < getSize(); slideNumber++) {
             Slide slide = getSlide(slideNumber);
-            xml+=slide.GetXmlForSlide();
+            xml+=slide.GetXml();
         }
         xml+="</presentation>\n";
         return xml;
